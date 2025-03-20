@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//Navigation bar effects on scroll
+window.addEventListener("scroll", function(){
+    const header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
+
+
 // 🔼 Scroll to top button
 const scrollTopBtn = document.querySelector(".scrollToTop-btn");
 
@@ -35,6 +42,7 @@ scrollTopBtn.addEventListener("click", () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 });
+
 
 // 🚀 Sección visible y resalta el enlace correspondiente en el navbar
 document.addEventListener("DOMContentLoaded", function () {
@@ -61,6 +69,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     window.addEventListener("scroll", activateNavLink);
 });
+
+
+// 🌙 Dark Mode
+
+document.addEventListener("DOMContentLoaded", () => {
+    const darkModeToggle = document.querySelector(".fa-moon");
+    const body = document.body;
+
+    // Verifica si hay un estado guardado en localStorage
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        body.classList.add("dark-mode");
+        darkModeToggle.classList.replace("fa-moon", "fa-sun");
+    }
+
+    darkModeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+
+        if (body.classList.contains("dark-mode")) {
+            darkModeToggle.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("dark-mode", "enabled");
+        } else {
+            darkModeToggle.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("dark-mode", "disabled");
+        }
+    });
+});
+
 
 
 
